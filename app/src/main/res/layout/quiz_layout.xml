@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/txtview_ques_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Q.1"
+        android:textSize="20sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"/>
+    <TextView
+        android:id="@+id/txtview_ques"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="55dp"
+        android:text="What is java?"
+        android:textSize="20sp"/>
+    <RadioGroup
+        android:id="@+id/answer_radiogroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtview_ques"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp">
+        <RadioButton
+            android:id="@+id/option1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="option1"
+            android:background="@drawable/edit_text_bakground"/>
+        <RadioButton
+            android:id="@+id/option2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="option2"
+            android:background="@drawable/edit_text_bakground"
+            android:layout_marginTop="5dp"/>
+        <RadioButton
+            android:id="@+id/option3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="option3"
+            android:background="@drawable/edit_text_bakground"
+            android:layout_marginTop="5dp"/>
+        <RadioButton
+            android:id="@+id/option4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="option4"
+            android:background="@drawable/edit_text_bakground"
+            android:layout_marginTop="5dp"/>
+    </RadioGroup>
+
+</RelativeLayout>

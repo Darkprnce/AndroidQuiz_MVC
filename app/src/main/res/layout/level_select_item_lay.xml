@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="@dimen/dp_5"
+    android:id="@+id/lvl_linear_lay">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_weight="1">
+    <Button
+        android:id="@+id/lvl_select_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Level 1"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:paddingHorizontal="30dp"
+        android:background="@drawable/button_background"
+        android:backgroundTint="@color/green"
+        android:elevation="4dp"
+        android:layout_marginHorizontal="50dp"/>
+    </LinearLayout>
+</LinearLayout>

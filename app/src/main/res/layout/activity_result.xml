@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#5fb0c9"
+    tools:context=".Activities.ResultActivity"
+    android:orientation="vertical">
+
+    <com.crypto.quizapp.helper.CustomTextView
+        android:id="@+id/lang_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="language"
+        android:textColor="@color/red"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:elevation="4dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="-15dp"
+        android:layout_marginHorizontal="30dp"
+        android:paddingBottom="70dp"
+        android:background="@drawable/bg_white_round_small_corner">
+
+        <com.crypto.quizapp.helper.CustomTextView
+            android:id="@+id/lvl_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Level"
+            android:textSize="25sp"
+            android:textColor="@color/yellow"
+            android:layout_marginTop="50dp"/>
+
+        <com.crypto.quizapp.helper.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Score"
+            android:textSize="25sp"
+            android:layout_marginTop="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="50dp">
+
+        <com.crypto.quizapp.helper.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Correct :"
+            android:textSize="18sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end">
+                <com.crypto.quizapp.helper.CustomTextView
+                    android:id="@+id/correct_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="50dp">
+
+            <com.crypto.quizapp.helper.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wrong :"
+                android:textSize="18sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end">
+                <com.crypto.quizapp.helper.CustomTextView
+                    android:id="@+id/wrong_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="50dp">
+
+            <com.crypto.quizapp.helper.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Not answered :"
+                android:textSize="18sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end">
+                <com.crypto.quizapp.helper.CustomTextView
+                    android:id="@+id/not_answered_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="-30dp"
+        android:paddingVertical="10dp">
+    <Button
+        android:id="@+id/finish_btn"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="wrap_content"
+        android:text="Finish"
+        android:background="@drawable/bg_white_round_small_corner"
+        android:backgroundTint="@color/red"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:elevation="10dp"/>
+
+        <Button
+            android:id="@+id/nxt_lvl_btn"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="wrap_content"
+            android:text="Next Level"
+            android:background="@drawable/bg_white_round_small_corner"
+            android:backgroundTint="@color/green"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:elevation="10dp" />
+    </LinearLayout>
+</LinearLayout>

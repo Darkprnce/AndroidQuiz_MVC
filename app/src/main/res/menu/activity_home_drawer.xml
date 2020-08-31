@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/home_icon_small"
+        android:title="@string/menu_home" />
+
+    <item
+        android:id="@+id/nav_aboutus"
+        android:icon="@drawable/aboutus_icon_small"
+        android:title="@string/about_us" />
+
+    <item
+        android:id="@+id/nav_reset"
+        android:icon="@drawable/reset_icon_small"
+        android:title="Reset all data" />
+
+    <item
+        android:id="@+id/nav_add"
+        android:icon="@drawable/add_icon_small"
+        android:title="Add Questions" />
+
+    <item
+        android:id="@+id/nav_logout"
+        android:icon="@drawable/logout_icon_small"
+        android:title="Log Out" />
+
+
+</menu>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="@dimen/dp_5"
+    android:layout_marginTop="@dimen/dp_10"
+    android:layout_marginHorizontal="@dimen/dp_10">
+
+    <Button
+        android:id="@+id/topic_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Java Core"
+        android:gravity="center"
+        android:paddingVertical="@dimen/dp_20"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_20"
+        android:textAllCaps="false"
+        android:background="@drawable/bg_gradient_small_corner" />
+
+</LinearLayout>

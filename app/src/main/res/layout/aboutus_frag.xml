@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#5fb0c9">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_50"
+        android:elevation="@dimen/dp_4"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_20">
+    <TextView
+        android:id="@+id/txtview_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Android Quiz App"
+        android:textSize="@dimen/sp_20"
+        android:layout_marginTop="@dimen/dp_10"/>
+    <TextView
+        android:id="@+id/txtview_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Created By: Tarun Yadvendu"
+        android:layout_marginTop="@dimen/dp_10" />
+    <TextView
+        android:id="@+id/txtview_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Version: 1.0.0" />
+    <TextView
+        android:id="@+id/txtview_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date : 27/8/20" />
+    </LinearLayout>
+</LinearLayout>

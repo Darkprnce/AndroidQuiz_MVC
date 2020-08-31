@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.crypto.quizapp.helper.CustomTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Your Choice"
+        android:textSize="@dimen/sp_30"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_20"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/topic_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/dp_20"
+        android:scrollbars="none"
+        android:layout_marginTop="@dimen/dp_20"/>
+
+</LinearLayout>

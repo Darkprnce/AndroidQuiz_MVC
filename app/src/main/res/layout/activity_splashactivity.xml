@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.Splashactivity"
+    android:background="@drawable/gradient">
+
+    <ImageView
+        android:id="@+id/splash"
+        android:layout_width="match_parent"
+        android:layout_height="510dp"
+        android:src="@drawable/logo" />
+    <TextView
+        android:id="@+id/txtview_splash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Android Quiz App"
+        android:textColor="@color/yellow"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/splash"/>
+</RelativeLayout>
