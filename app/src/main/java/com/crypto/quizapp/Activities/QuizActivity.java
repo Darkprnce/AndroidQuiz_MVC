@@ -37,7 +37,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
         levelvalue = getIntent().getIntExtra("lvl", 0);
         languagevalue = getIntent().getStringExtra("lang");
-        setTitle("Level "+levelvalue);
+        setTitle("Level "+levelvalue);                                  // setting title on toolbar
         initView();
     }
 
@@ -51,6 +51,9 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void getQuestions() {
+
+        // getting all the questions with selected topic and level
+
         class GetQuestions extends AsyncTask<Void, Void, List<QuestionsBean>> {
 
             @Override
@@ -66,10 +69,17 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             protected void onPostExecute(List<QuestionsBean> questionsBeanList) {
                 super.onPostExecute(questionsBeanList);
+
+                // defining the linearlayoutmanager
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+
+                // setting linearlayoutmanager to the recyclerview
                 quiz_Recyclerview.setLayoutManager(linearLayoutManager);
 
+                // custom adapter for recyclerview
                 QuestionsAdapter qadapter = new QuestionsAdapter(QuizActivity.this, questionsBeanList);
+
+                // setting the adapter to the recyclerview
                 quiz_Recyclerview.setAdapter(qadapter);
             }
         }
@@ -82,6 +92,9 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_submit:
+
+                // moving to the result activity
+
                 Intent i = new Intent(QuizActivity.this, ResultActivity.class);
                 i.putExtra("lang", languagevalue);
                 i.putExtra("lvl", levelvalue);

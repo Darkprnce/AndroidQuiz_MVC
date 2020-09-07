@@ -14,6 +14,8 @@ public class CommonSharedPreference  {
 
     static SharedPreferences.Editor editor;
 
+
+    // setting a value in shared preferences
     public static void setsharedText(Context context, String key, String value) {
         SharedPreferences preferences = context.getSharedPreferences(context.getPackageName(), context.MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = preferences.edit();
@@ -21,13 +23,14 @@ public class CommonSharedPreference  {
         prefsEditor.apply();
     }
 
-
+    // getting a value from shared preferences
     public static String getsharedText(Context context, String key) {
         SharedPreferences preferences = context.getSharedPreferences(context.getPackageName(), context.MODE_PRIVATE);
         String value = preferences.getString(key, "");
         return value;
     }
 
+    // deleting all the shared preference
     public static void deletesharedpref(Context context) {
 
         File sharedPreferenceFile = new File("/data/data/" + context.getPackageName() + "/shared_prefs/");
@@ -39,6 +42,7 @@ public class CommonSharedPreference  {
         editor = sharedPref.edit().clear();
         editor.commit();
 
+        // if not wanting the fresh start
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor prefsEditor = preferences.edit();
         prefsEditor.putString("firstTime", "yes");

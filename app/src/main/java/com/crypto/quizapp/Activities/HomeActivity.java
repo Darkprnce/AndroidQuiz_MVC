@@ -39,10 +39,10 @@ public class HomeActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private DrawerLayout drawer;
-    private NavigationView navigationView;
+    private NavigationView navigationView;  // Navigation drawer
     private ActionBarDrawerToggle drawerToggle;
-    private FragNavController fragNavController;
-    private FragNavTransactionOptions fragNavTransactionOptions;
+    private FragNavController fragNavController;   // FragNav library controller
+    private FragNavTransactionOptions fragNavTransactionOptions; // Fragnav transaction option
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,24 +61,36 @@ public class HomeActivity extends AppCompatActivity {
         drawer.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
 
+        // declaring fragnav controller
         fragNavController = new FragNavController(getSupportFragmentManager(), R.id.content_frame);
+
+        // declaring fragnav transaction options
         fragNavTransactionOptions = new FragNavTransactionOptions.Builder().customAnimations(R.anim.slide_in_from_right,
                 R.anim.slide_out_to_left, R.anim.slide_in_from_left, R.anim.slide_out_to_right).build();
 
+        // adding root fragments
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(TopicSelectFrag.newInstance());
 
+        // setting root fragments to fragnav controller
         fragNavController.setRootFragments(fragments);
 
+        // setting fragnav transaction option to fragnav controller
         fragNavController.setDefaultTransactionOptions(fragNavTransactionOptions);
-       // getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new TopicSelectFrag()).commit();
+
+        // setting first fragment to display when we get on Homeactivity
         fragNavController.initialize(FragNavController.TAB1, savedInstanceState);
+
+        //navigation drawer listener to navigate through activity and fragment from drawer
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.nav_home:
-                       // getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new TopicSelectFrag()).commit();\
+
+                        // checking if the fragment is root fragment or not, if not then pop the fragment from stack,
+                        // if it is root fragment then switch the fragment to First fragment in stack
+
                         if(!fragNavController.isRootFragment()){
                          fragNavController.popFragment();
                         }else {
@@ -87,34 +99,38 @@ public class HomeActivity extends AppCompatActivity {
                         break;
 
                     case R.id.nav_aboutus:
-                      //  getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new AboutUsFrag()).commit();
+                        // push fragment in the stack
                         fragNavController.pushFragment(AboutUsFrag.newInstance());
                         break;
 
                     case R.id.nav_reset:
+                        // clearing user answers
                         deleteQuestions();
                         break;
 
                     case R.id.nav_add:
+                        // directing to addquestionActivity
                         Intent z = new Intent(HomeActivity.this, AddQuestionActivity.class);
                         startActivity(z);
                         break;
 
                     case R.id.nav_logout:
+                        // logging out from the app, changing shared preference value will allow to go to signinactivity from Splashactivity
                         CommonSharedPreference.setsharedText(HomeActivity.this, "logged", null);
                         Intent i = new Intent(HomeActivity.this, SignInActivity.class);
-                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // clearing the history stack
                         startActivity(i);
-                        finish();
+                        finish(); // finish the activity so we won't return to this activity by back press
                         break;
 
 
                 }
-                drawer.closeDrawer(GravityCompat.START);
+                drawer.closeDrawer(GravityCompat.START); // close drawer after selecting an option
                 return true;
             }
         });
 
+        // if the user gets on this screen for first time, then add the demo questions to the database
         if (TextUtils.isEmpty(CommonSharedPreference.getsharedText(HomeActivity.this, "firstTime"))) {
             addquestions();
             CommonSharedPreference.setsharedText(HomeActivity.this, "firstTime", "no");
@@ -123,6 +139,10 @@ public class HomeActivity extends AppCompatActivity {
 
 
     private void addquestions() {
+
+        // adding demo questions to the database
+        // look in QuestionsBean Class for the detail about the parameters
+
         class AddQuestions extends AsyncTask<Void, Void, Void> {
 
             @Override
@@ -321,6 +341,11 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
+        // if the drawer is open then close it
+        // if the fragment is not the root fragment then pop the fragment from stack
+        // if the fragment is root fragment then onBackpressed called
+
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -334,6 +359,9 @@ public class HomeActivity extends AppCompatActivity {
 
 
     private void deleteQuestions() {
+
+        // deleting the user answer from the database
+
         class DeleteQues extends AsyncTask<Void, Void, Void> {
 
             @Override
@@ -348,8 +376,8 @@ public class HomeActivity extends AppCompatActivity {
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
                 Toast.makeText(HomeActivity.this, "All data is reset", Toast.LENGTH_SHORT).show();
-                addquestions();
-                fragNavController.replaceFragment(TopicSelectFrag.newInstance());
+                addquestions(); // again adding demo questions because all values were erased from the database
+                fragNavController.replaceFragment(TopicSelectFrag.newInstance()); // this will refresh the TopicSelectFragment
             }
         }
 

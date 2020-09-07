@@ -8,10 +8,10 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatTextView;
 
-
-
 @SuppressLint("AppCompatCustomView")
 public class CustomTextView extends AppCompatTextView {
+
+    // custom TextView with custom font
 
     public CustomTextView(Context context) {
         super(context);

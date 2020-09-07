@@ -38,19 +38,22 @@ public class TopicSelectFrag extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mContext = getActivity();
-        mView = inflater.inflate(R.layout.fragment_topicselect, container, false);
+        mContext = getActivity(); // getting context
+        mView = inflater.inflate(R.layout.fragment_topicselect, container, false); // defining the mView
         initview();
         return mView;
     }
 
     private void initview() {
-        getActivity().setTitle("Topics");
+        getActivity().setTitle("Topics"); // setting title in toolbar
         topic_recycler = mView.findViewById(R.id.topic_recycler);
         getTopics();
     }
 
     private void getTopics() {
+
+        // getting the topics list
+
         class GetTopics extends AsyncTask<Void, Void, List<QuestionsBean>> {
 
             @Override
@@ -67,24 +70,31 @@ public class TopicSelectFrag extends Fragment {
             protected void onPostExecute(List<QuestionsBean> questionsList) {
                 super.onPostExecute(questionsList);
                 String lang = null;
-                List<String> topic_list = new ArrayList<>();
+                List<String> topic_list = new ArrayList<>(); // topics array list
                 for (int i = 0; i <questionsList.size() ; i++) {
 
                     if(i==0){
                         lang = questionsList.get(0).getTopic();
-                        topic_list.add(lang);
+                        topic_list.add(lang); // adding value in topics list
                     }
 
                     if(!topic_list.contains(questionsList.get(i).getTopic())){
                         lang = questionsList.get(i).getTopic();
-                        topic_list.add(lang);
+                        topic_list.add(lang); // adding value in topics list
 
                     }
                 }
 
+                // defining the linearlayoutManager for recyclerview
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
+
+                // setting linearlayoutManager to recyclerview
                 topic_recycler.setLayoutManager(linearLayoutManager);
+
+                // defining custom adapter for recyclerView
                 TopicsAdapter topicsAdapter = new TopicsAdapter(mContext,topic_list);
+
+                // setting adpter to the recyclerview
                 topic_recycler.setAdapter(topicsAdapter);
 
             }

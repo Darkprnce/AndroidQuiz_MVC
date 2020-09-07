@@ -37,9 +37,9 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-        setTitle("Score");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        setTitle("Score");                                          // setting the toolbar title
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);       // enabling the toolbar back button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);        // enabling the toolbar back button
 
         language = getIntent().getStringExtra("lang");
         level = getIntent().getIntExtra("lvl", 0);
@@ -61,6 +61,9 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void getQuestions() {
+
+        // getting the questions
+
         class GetQuestions extends AsyncTask<Void, Void, List<QuestionsBean>> {
 
             @Override
@@ -85,6 +88,9 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void updateQuestions(final List<QuestionsBean> questionsBeanList) {
+
+        // updating the score and setting the next level to enable
+
         class updateQuestions extends AsyncTask<Void, Void, Void> {
 
             @Override
@@ -110,6 +116,9 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void getLevels() {
+
+        // getting the level according to the topic
+
         class GetLevels extends AsyncTask<Void, Void, List<QuestionsBean>> {
 
             @Override
@@ -135,6 +144,9 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
 
 
     private void setLevel(List<QuestionsBean> questionsBeanList) {
+
+        // displaying the next level button if there is next level available
+
         levels_list = new ArrayList<>();
         int lvl = 0;
         for (int i = 0; i < questionsBeanList.size(); i++) {
@@ -153,6 +165,9 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
 
 
     private void getresult(List<QuestionsBean> questionsBeanList) {
+
+        // calculating the result - correct answer, wrong answer, and not answered
+
         for (int i = 0; i < questionsBeanList.size(); i++) {
             total_count++;
             if (questionsBeanList.get(i).getUseranswer().equalsIgnoreCase(questionsBeanList.get(i).getCorrectoption())) {
@@ -166,7 +181,11 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
             }
         }
 
+        // passing marks logic
+
         passing_marks = (60 / 100) * total_count;
+
+        // setting the data to the views
 
         correct_txt.setText("" + correct_count);
         wrong_txt.setText("" + wrong_count);
@@ -174,6 +193,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         language_txt.setText(language);
         lvl_txt.setText("Level " + level);
 
+        //  updating the score to the database
         updateQuestions(questionsBeanList);
     }
 
@@ -182,12 +202,19 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.finish_btn:
+
+                // moving to the homeactivity after the result
+
                 Intent i = new Intent(ResultActivity.this, HomeActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);
                 finish();
                 break;
             case R.id.nxt_lvl_btn:
+
+                // if user passed the quiz then move to next level
+                // if not passed the show toast
+
                 if (correct_count < passing_marks) {
                     Toast.makeText(this, "atleat 6 answers should be correct", Toast.LENGTH_SHORT).show();
                 } else {

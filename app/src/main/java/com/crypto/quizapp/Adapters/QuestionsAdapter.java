@@ -16,8 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.crypto.quizapp.Beans.QuestionsBean;
 import com.crypto.quizapp.Databases.DatabaseClient;
 import com.crypto.quizapp.R;
-
-
 import java.util.List;
 
 public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.ViewHolder> {
@@ -29,18 +27,23 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.View
 
     public QuestionsAdapter(Context applicationcontext, List<QuestionsBean> questions) {
         this.context = applicationcontext;
-        this.questions = questions;
+        this.questions = questions;  // list of questions
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        // view to displayed for each question
+
         View itemview = LayoutInflater.from(context).inflate(R.layout.quiz_layout, parent, false);
         return new ViewHolder(itemview);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+
+        // setting data and handling radio buttons for each view holder
 
         holder.tv_quesno.setText("Q." + questions.get(position).getQuestionno() + " ");
         holder.tv_ques.setText(questions.get(position).getQuestion());
@@ -57,6 +60,9 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.View
                 radioButtonID = holder.answer_grp.getCheckedRadioButtonId();
                 questions.get(clickedPos).setSelectedRadioButton(radioButtonID);
 
+                // if any radio button is selected then take the value and update it in the database
+                // if no radio button is selected then add (-1) so we can calculate the not answered questions
+
                 if (holder.rb_option1.isChecked()) {
                     optionvalue = holder.rb_option1.getText().toString();
                 } else if (holder.rb_option2.isChecked()) {
@@ -69,11 +75,16 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.View
                     optionvalue = "-1";
                 }
 
+                // setting the user answer
                 questions.get(position).setUseranswer(optionvalue);
+
+                // updating the question in the database
                 updateTask(questions.get(position));
 
             }
         });
+
+        // for viewholder to show the selected value and not change it while recycling the view
 
         holder.answer_grp.setTag(position);
         if (questions.get(position).getSelectedRadioButton() != -1) {
@@ -94,6 +105,9 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.View
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+
+        // defining the views
+
         TextView tv_quesno, tv_ques;
         RadioGroup answer_grp;
         RadioButton rb_option1, rb_option2, rb_option3, rb_option4;
@@ -111,6 +125,8 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.View
     }
 
     private void updateTask(final QuestionsBean questionsBean) {
+
+        // updating the user answer in the database
 
         class UpdateTask extends AsyncTask<Void, Void, Void> {
 
@@ -132,29 +148,6 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.View
 
         UpdateTask ut = new UpdateTask();
         ut.execute();
-    }
-
-
-    private void deleteTask(final QuestionsBean questionsBean) {
-        class DeleteTask extends AsyncTask<Void, Void, Void> {
-
-            @Override
-            protected Void doInBackground(Void... voids) {
-                DatabaseClient.getInstance(context).getAppDatabase()
-                        .questionDao()
-                        .delete(questionsBean);
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-            }
-        }
-
-        DeleteTask dt = new DeleteTask();
-        dt.execute();
-
     }
 
 }

@@ -8,10 +8,10 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatEditText;
 
-
-
 @SuppressLint("AppCompatCustomView")
 public class CustomEditText extends AppCompatEditText {
+
+    // custom EditText with custom font
 
     public CustomEditText(Context context) {
         super(context);

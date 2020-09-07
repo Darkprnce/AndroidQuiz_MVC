@@ -33,7 +33,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
-        getSupportActionBar().hide();
+        getSupportActionBar().hide();   // hide toolbar
         getWindow().setStatusBarColor(this.getColor(R.color.lightpink));
         initViews();
     }
@@ -53,6 +53,9 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.signup_btn_signin:
+
+                // moving from Signinactivity to SignupActivity
+
                 Intent i = new Intent(SignInActivity.this, SignUpActivity.class);
                 startActivity(i);
                 break;
@@ -63,6 +66,9 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void submit() {
+
+        // validations
+
         if (!validateEmail()) {
             return;
         } else if (!validatepassword()) {
@@ -76,6 +82,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
         final String email = email_edt.getText().toString().trim();
         final String pass = pass_edt.getText().toString().trim();
+
+        // Checking if the user exist in the database
 
         class SignInUser extends AsyncTask<Void, Void, Boolean> {
 
@@ -143,6 +151,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void requestFocus(View view) {
+        // getting focus on editText
         if (view.requestFocus()) {
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }

@@ -50,12 +50,16 @@ public class Splashactivity extends AppCompatActivity {
     }
 
     private void startHandler() {
+        //  handler initialized
+
         if (handler == null) {
             handler = new Handler();
         }
         runnable = new Runnable() {
             @Override
             public void run() {
+                // if user already logged in before then take to HomeActivity or if not then to signinactivity
+
                 if(TextUtils.isEmpty(CommonSharedPreference.getsharedText(Splashactivity.this,"logged"))){
                     Intent intent = new Intent(Splashactivity.this, SignInActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -71,10 +75,14 @@ public class Splashactivity extends AppCompatActivity {
             }
         };
 
+        // start handler after 3.5sec
         handler.postDelayed(runnable,3500);
     }
 
     public void noactionbar(){
+
+        // to hide the action bar
+
         decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
@@ -89,6 +97,7 @@ public class Splashactivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        // when user press home button during splash screen then it will prevent the application to continue
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
         }
@@ -98,6 +107,7 @@ public class Splashactivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         noactionbar();
+        // continue the application after returning to app
         if(handler !=null){
             handler.postDelayed(runnable,3500);
         }

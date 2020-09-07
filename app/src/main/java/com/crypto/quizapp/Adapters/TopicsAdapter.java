@@ -23,12 +23,15 @@ public class TopicsAdapter extends RecyclerView.Adapter<TopicsAdapter.ViewHolder
 
     public TopicsAdapter(Context applicationcontext, List<String> questions) {
         this.mContext = applicationcontext;
-        this.questions = questions;
+        this.questions = questions; // list of topics for use
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        // view to be used in custom adapter
+
         View itemview = LayoutInflater.from(mContext).inflate(R.layout.topic_item_lay, parent, false);
         return new ViewHolder(itemview);
     }
@@ -36,10 +39,15 @@ public class TopicsAdapter extends RecyclerView.Adapter<TopicsAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
+        // setting the data
+
         holder.topic_btn.setText(questions.get(position));
         holder.topic_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // moving to level select activity
+
                 Intent i = new Intent(mContext, LevelSelectActivity.class);
                 i.putExtra("lang",questions.get(position));
                 mContext.startActivity(i);
@@ -49,11 +57,16 @@ public class TopicsAdapter extends RecyclerView.Adapter<TopicsAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
+
+        //  size of the list
+
         return questions.size();
     }
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+
+        // defining the layout
 
         private Button topic_btn;
 

@@ -8,10 +8,10 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatButton;
 
-
-
 @SuppressLint("AppCompatCustomView")
 public class CustomButton extends AppCompatButton {
+
+    // custom button with custom font
 
     public CustomButton(Context context) {
         super(context);
